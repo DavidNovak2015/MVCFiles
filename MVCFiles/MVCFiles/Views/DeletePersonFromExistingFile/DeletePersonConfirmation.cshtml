@@ -1,0 +1,47 @@
+﻿@model MVCFiles.Models.PersonViewModel
+@{
+    ViewBag.Title = "DeletePersonConfirmation";
+}
+
+<h2>Möchten Sie wirklich diese Person aus der Datei "@Model.FileName" löschen?</h2>
+
+@using (Html.BeginForm("DeletePerson", "DeletePersonFromExistingFile", Model.PersonToDelete))
+{
+    Html.AntiForgeryToken();
+    Html.ValidationSummary();
+
+    <div class="row">
+
+        <div class="col-md-2">
+            <img src="@Model.PersonToDelete.AvatarPath" height="80" width="80" />
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.PersonToDelete.Id, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.PersonToDelete.Id, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.PersonToDelete.Name, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.PersonToDelete.Name, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.PersonToDelete.Surname, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.PersonToDelete.Surname, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.PersonToDelete.DateOfBirth, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.PersonToDelete.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", @readonly = "readonly" })
+        </div>
+        <div class="col-md-2">
+            @Html.LabelFor(model => model.PersonToDelete.Age, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.PersonToDelete.Age, new { @class = "form-control", @readonly = "readonly" })
+        </div><br />
+    </div><br /><br />
+
+    <div class="row">
+        <div class="col-md-1 col-md-10">
+            <input type="submit" value="löschen" class="btn btn-default" /><br/><br/>
+            <h4> @Html.ActionLink("abbrechen", "Option", "Option", null, new { @class = "btn btn-default" })</h4>
+            </div>
+    </div>
+}
+

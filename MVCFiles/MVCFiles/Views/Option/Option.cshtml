@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Option";
+}
+
+<h2>Arbeit mit  Dateien </h2>
+
+<h3>Arbeit mit texten Dateien und Images (Format: XML and .png) <br/><br/>(Evidenz der Leuten)</h3>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <h4> @Html.ActionLink("Abbildung Personen aus einem Datei", "GetFileName", "DisplayPersonsFromFile", null, new { @class = "btn btn-default" })</h4>
+    </div>
+    <div class="col-md-4">
+        <h4> @Html.ActionLink("Gründung neuen Personen in eine neue Datei", "NameOfNewFile", "SavePersonsIntoNewFile", null, new { @class = "btn btn-default" })</h4>
+    </div>
+
+</div><br/>
+
+<div class="row">
+    
+    <div class="col-md-4">
+        <h4> @Html.ActionLink("Einer Datei neue Personen beizufügen", "GetFileName", "SavePersonsIntoExistingFile", null, new { @class = "btn btn-default" })</h4>
+    </div>
+    <div class="col-md-4">
+        <h4> @Html.ActionLink("Eine Person aus einem Datei löschen", "GetFileName", "DeletePersonFromExistingFile", null, new { @class = "btn btn-default" })</h4>
+    </div>
+</div>

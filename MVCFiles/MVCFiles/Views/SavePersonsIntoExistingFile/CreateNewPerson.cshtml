@@ -1,0 +1,66 @@
+﻿@model MVCFiles.Models.PersonViewModel
+@{
+    ViewBag.Title = "CreateNewPerson";
+}
+
+<h2> @Html.ActionLink("I will keine weitere Personen gründen mehr. Bitte speichern das Datei", "SaveAddedPersonsIntoExistingFile", "SavePersonsIntoExistingFile", null, new { @class = "btn btn-default" })</h2><br />
+
+<h4>Gründung neuer(weiterer) Person,die in die Datei "@Model.FileName" gespeichert wird</h4>
+
+@using (Html.BeginForm("CreateNewPerson", "SavePersonsIntoExistingFile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    Html.AntiForgeryToken();
+    Html.ValidationSummary();
+
+    <div class="form-horizontal">
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Id, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Id, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Id, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Surname, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Surname, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Surname, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DateOfBirth, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Avatar, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Avatar, new { @type = "file", @accept = ".png", @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Avatar, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="beifügen" class="btn btn-default" />
+            </div>
+        </div>
+
+    </div>
+
+}
+

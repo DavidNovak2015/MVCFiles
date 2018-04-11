@@ -1,0 +1,31 @@
+﻿@model MVCFiles.Models.FileViewModel
+@{
+    ViewBag.Title = "GetFileName";
+}
+
+<h2>Personen aus einem Datei löschen</h2>
+
+<h3>Wählen Sie bitte eine Datei aus</h3>
+
+@using (Html.BeginForm())
+{
+    Html.AntiForgeryToken();
+    Html.ValidationSummary(true);
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(model => model.FileName, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.FileName, new SelectList(Model.Files, "Value", "Text"))
+                @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
+            </div>
+        </div><br />
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="auswählen" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

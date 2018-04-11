@@ -1,0 +1,33 @@
+﻿@model MVCFiles.Models.FileViewModel
+@{
+    ViewBag.Title = "NameOfNewFile";
+}
+
+<h2>Name der neuen Datei</h2>
+
+@using (Html.BeginForm())
+{
+    Html.AntiForgeryToken();
+    Html.ValidationSummary();
+
+  <div class="form-horizontal">
+
+      <div class="form-group">
+        @Html.LabelFor(model => model.FileName, new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FileName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.FileName, "", new { @class = "text-danger" })
+        </div>
+      </div><br />
+
+      <div class="form-group">
+          <div class="col-md-offset-2 col-md-10">
+              <input type="submit" value="speichern" class="btn btn-default" />
+          </div>
+      </div>
+
+  </div>
+
+}
+
+

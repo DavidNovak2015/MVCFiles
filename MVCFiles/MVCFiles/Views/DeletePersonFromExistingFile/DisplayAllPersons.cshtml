@@ -1,0 +1,48 @@
+﻿@model MVCFiles.Models.PersonViewModel
+@{
+    ViewBag.Title = "DisplayAllPersons";
+}
+
+<h2>Wählen Sie eine Person aus, die Sie aus der Datei "@Model.FileName" löschen wollen</h2>
+
+@using (Html.BeginForm())
+{
+    Html.AntiForgeryToken();
+    Html.ValidationSummary(true);
+
+    foreach (var person in Model.PersonsWithAge)
+    {
+        <div class="row">
+
+            <div class="col-md-2">
+                <img src="@person.AvatarPath" width="80" height="80" />
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.Id, new { @class = "control-label" })
+                @Html.TextBoxFor(model => person.Id, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+                @Html.TextBoxFor(model => person.Name, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.Surname, new { @class = "control-label" })
+                @Html.TextBoxFor(model => person.Surname, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.DateOfBirth, new { @class = "control-label" })
+                @Html.TextBoxFor(model => person.DateOfBirth, "{0:dd/MM/yyyy}", new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                @Html.LabelFor(model => model.Age, new { @class = "control-label" })
+                @Html.TextBoxFor(model => person.Age, new { @class = "form-control", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2"><br/>
+                <h4> @Html.ActionLink("Auswählen", "DeletePersonConfirmation", "DeletePersonFromExistingFile", new { personId=person.Id, fileName=Model.FileName}, new { @class = "form-control" })</h4>
+            </div>
+        </div><br />
+    }
+    <br />
+    <h4> @Html.ActionLink("Zurück zur Arbeit mit Dateien", "Option", "Option", null, new { @class = "btn btn-default" })</h4>
+}
+
